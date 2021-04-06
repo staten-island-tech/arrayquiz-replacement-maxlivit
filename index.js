@@ -76,13 +76,35 @@ const titles = [
 
 //Array of authors and the book they wrote
 //"--- wrote --- in ---"
-
+const fullDetail = books.map(
+  (books) =>
+    books.authorFirst +
+    " " +
+    books.authorLast +
+    " wrote " +
+    books.name +
+    " in " +
+    books.publishDate
+);
+console.log(fullDetail);
 //Sort books from oldest to most recent
-
+const birthOrder = books.sort(function (a, b) {
+  if (a.publishDate < b.publishDate) {
+    return 1;
+  } else {
+    return -1;
+  }
+});
+console.table(birthOrder);
 //sort books alphabetically
 
 //Find who wrote War and Peace
-
+const whoWrote = books.sort(function (books) {
+  if (books.name === "War and Peace") {
+    return books.authorFirst + " " + books.authorLast;
+  }
+});
+console.log(whoWrote);
 //how many books were written before 1900?
 
 //was there at least one book published within the last 100 years?
