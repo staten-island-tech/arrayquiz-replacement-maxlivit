@@ -89,7 +89,7 @@ const fullDetail = books.map(
 console.log(fullDetail);
 //Sort books from oldest to most recent
 const birthOrder = books.sort(function (a, b) {
-  if (a.publishDate < b.publishDate) {
+  if (a.publishDate > b.publishDate) {
     return 1;
   } else {
     return -1;
@@ -97,16 +97,46 @@ const birthOrder = books.sort(function (a, b) {
 });
 console.table(birthOrder);
 //sort books alphabetically
-
+const alphabetically = titles.sort(function (a, b) {
+  return a < b ? -1 : 1;
+});
+console.table(alphabetically);
 //Find who wrote War and Peace
-const whoWrote = books.sort(function (books) {
+const whoWrote = books.filter(function (books) {
   if (books.name === "War and Peace") {
-    return books.authorFirst + " " + books.authorLast;
+    console.log(books.authorFirst + " " + books.authorLast);
   }
 });
-console.log(whoWrote);
 //how many books were written before 1900?
+const before1900 = books.filter(function (books) {
+  if (books.publishDate < 1900) {
+    return true;
+  } else {
+    return false;
+  }
+}).length;
+console.log(before1900 + " books");
 
 //was there at least one book published within the last 100 years?
-
+const last100 = books.filter(function (books) {
+  if (books.publishDate + 100 >= 2021) {
+    console.log(
+      "Yes, at least one book was published within the last 100 years."
+    );
+  }
+});
 //was every book published within the last 100 years?
+const allBefore = books.filter(function (books) {
+  if (books.publishDate + 100 >= 2021) {
+    return true;
+  } else {
+    return false;
+  }
+}).length;
+const allBefore1900 = books.filter(function (books) {
+  if (allBefore.length === titles.length) {
+    console.log("Yes");
+  } else {
+    console.log("No");
+  }
+});
